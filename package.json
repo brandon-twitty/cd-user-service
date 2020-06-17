@@ -1,0 +1,17 @@
+{
+  "name": "user",
+  "version": "1.0.0",
+  "description": "services for light users as they go through the initial form workflow and messaging",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Twitty",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.696.0",
+    "serverless": "^1.72.0",
+    "serverless-webpack": "^5.3.2",
+    "webpack": "^4.43.0"
+  }
+}

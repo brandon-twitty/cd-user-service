@@ -1,0 +1,48 @@
+service: user-service
+frameworkVersion: ">=1.1.0 <2.0.0"
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: carddate
+  stage: dev
+  #role: arn:aws:iam::933153212182:role/candidate-service-dev-sa-east-1-lambdaRole
+  region: us-east-2
+  environment:
+    tableName: ${self:custom.tableName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+
+      Resource: '*'
+plugins:
+  - serverless-webpack
+#  - serverless-bundle
+package:
+  individually: true
+
+custom:
+  tableName: user
+functions:
+  createUser:
+    handler: lambda-endpoints/createUser.handler
+    events:
+      - http:
+          path: create-user/{ID}
+          method: POST
+          cors: true
+
+
+resources:
+  Resources:
+    MyDynamoDbTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: ID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ID
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
