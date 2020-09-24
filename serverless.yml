@@ -1,4 +1,4 @@
-service: user-service
+service: conversation-service
 frameworkVersion: ">=1.1.0 <2.0.0"
 provider:
   name: aws
@@ -22,14 +22,14 @@ package:
   individually: true
 
 custom:
-  tableName: user
+  tableName: conversation
 functions:
   createUser:
-    handler: lambda-endpoints/createUser.handler
+    handler: lambda-endpoints/getConversationById.handler
     events:
       - http:
-          path: create-user/{ID}
-          method: POST
+          path: get-conversations/{ID}
+          method: GET
           cors: true
 
 

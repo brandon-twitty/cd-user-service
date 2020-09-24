@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "coversation",
   "version": "1.0.0",
   "description": "services for light users as they go through the initial form workflow and messaging",
   "main": "handler.js",
